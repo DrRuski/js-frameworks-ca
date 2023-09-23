@@ -1,3 +1,15 @@
+import Main from "./components/main";
+import ProductList from "./components/productList/productList";
+import useData from "./data/useData";
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const { isLoading, productData, error } = useData();
+  console.log(productData);
+  return (
+    <div>
+      <Main>
+        <ProductList productData={productData} />
+      </Main>
+    </div>
+  );
 }
