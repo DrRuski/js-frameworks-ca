@@ -10,7 +10,7 @@ export default function ProductList({ productData }) {
 
 function Product({ product }) {
   return (
-    <li className="flex flex-col shadow rounded">
+    <li className="flex flex-col shadow rounded bg-secondary text-text hover:shadow-primary cursor-pointer">
       <img
         className="aspect-square object-cover rounded-t"
         src={product.imageUrl}
@@ -26,19 +26,23 @@ function Product({ product }) {
             {product.rating ? (
               `User Rating | ${product.rating} ⭐`
             ) : (
-              <span className="font-light">
+              <span className="font-light opacity-50">
                 <em>Product is not rated.</em>
               </span>
             )}
           </p>
-          <p className="flex flex-col">
-            {product.discountedPrice ? (
+          <p className="flex flex-col text-right">
+            {product.discountedPrice !== product.price ? (
               <>
-                <span>{product.price}$</span>
-                <span>{product.discountedPrice}$</span>
+                <span className="line-through opacity-50">{product.price}</span>
+                <span className="text-xl font-medium text-primary">
+                  {product.discountedPrice} $
+                </span>
               </>
             ) : (
-              <span>{product.price}$</span>
+              <span className="text-xl font-medium text-primary">
+                {product.price} $
+              </span>
             )}
           </p>
         </div>

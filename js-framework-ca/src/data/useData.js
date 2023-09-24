@@ -18,6 +18,9 @@ export default function useData() {
           throw new Error("Something went wrong, try refreshing.");
         }
         const products = await res.json();
+        if (products.Response === "False") {
+          throw new Error("Item you were looking for was not found.");
+        }
         setProductData(products);
         setError("");
       } catch (error) {
