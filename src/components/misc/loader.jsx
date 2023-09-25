@@ -1,6 +1,6 @@
 export default function Loader() {
   return (
-    <div className="container text-center">
+    <div className="flex justify-center items-center h-screen">
       <span className="loader"></span>
     </div>
   );

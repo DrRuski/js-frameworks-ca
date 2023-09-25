@@ -12,7 +12,7 @@ export default function ProductList({ productData }) {
 
 function Product({ product }) {
   return (
-    <li className="flex flex-col shadow rounded bg-secondary text-text hover:shadow-primary cursor-pointer">
+    <li className="flex flex-col shadow-sm shadow-secondary rounded bg-secondary text-text border border-secondary hover:border hover:border-primary cursor-pointer">
       <img
         className="aspect-square object-cover rounded-t"
         src={product.imageUrl}

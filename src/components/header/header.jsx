@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useKey } from "../misc/useKey";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   return (
-    <header className="container m-auto h-24">
+    <header className="container mx-auto my-10">
       <Navbar />
     </header>
   );
@@ -40,7 +42,7 @@ function Search({ query, setQuery }) {
 
   return (
     <input
-      className="block w-6/12 h-10"
+      className="block w-2/4 h-10 rounded text-center text-text bg-secondary shadow-sm shadow-secondary border border-secondary hover:border-primary outline-none focus:border-primary cursor-pointer"
       type="text"
       placeholder="Search items..."
       value={query}
@@ -52,16 +54,15 @@ function Search({ query, setQuery }) {
 
 function NavLinks() {
   return (
-    <div className="flex">
-      <ul className="flex text-text">
-        <li>Home</li>
-        <li>Contact</li>
+    <div className="flex gap-5">
+      <ul className="flex gap-5 text-text">
+        <li className="hover:text-primary cursor-pointer">HOME</li>
+        <li className="hover:text-primary cursor-pointer">CONTACT</li>
       </ul>
-      <ShoppingCart />
+      <FontAwesomeIcon
+        className="text-text hover:text-primary cursor-pointer"
+        icon={faCartShopping}
+      />
     </div>
   );
-}
-
-function ShoppingCart() {
-  return <span className="text-text">hello</span>;
 }
