@@ -1,10 +1,12 @@
 export default function ProductList({ productData }) {
   return (
-    <ul className="grid grid-cols-5 gap-5">
-      {productData?.map((product) => (
-        <Product product={product} key={product.id} />
-      ))}
-    </ul>
+    <section>
+      <ul className="grid grid-cols-5 gap-5">
+        {productData?.map((product) => (
+          <Product product={product} key={product.id} />
+        ))}
+      </ul>
+    </section>
   );
 }
 

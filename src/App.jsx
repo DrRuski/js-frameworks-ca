@@ -1,5 +1,5 @@
+import Home from "./components/home/home";
 import Layout from "./components/layout/layout";
-import Main from "./components/main";
 import Loader from "./components/misc/loader";
 import ProductList from "./components/productList/productList";
 import useData from "./data/useData";
@@ -9,10 +9,10 @@ export default function App() {
   return (
     <div className="bg-background">
       <Layout>
-        <Main>
+        <Home>
           {isLoading && <Loader />}
           {!isLoading && !error && <ProductList productData={productData} />}
-        </Main>
+        </Home>
       </Layout>
     </div>
   );

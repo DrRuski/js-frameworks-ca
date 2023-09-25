@@ -1,14 +1,20 @@
 import { useRef } from "react";
 import { useKey } from "../misc/useKey";
 
-export default function NavBar() {
+export default function Header() {
   return (
-    <nav className="container">
-      <div className="flex justify-evenly">
-        <Logo />
-        <Search />
-        <NavLinks />
-      </div>
+    <header className="container m-auto h-24">
+      <Navbar />
+    </header>
+  );
+}
+
+function Navbar() {
+  return (
+    <nav className="flex justify-between items-center h-full">
+      <Logo />
+      <Search />
+      <NavLinks />
     </nav>
   );
 }
@@ -34,7 +40,7 @@ function Search({ query, setQuery }) {
 
   return (
     <input
-      className="search"
+      className="block w-6/12 h-10"
       type="text"
       placeholder="Search items..."
       value={query}
@@ -46,9 +52,16 @@ function Search({ query, setQuery }) {
 
 function NavLinks() {
   return (
-    <ul className="flex text-text">
-      <li>Home</li>
-      <li>Contact</li>
-    </ul>
+    <div className="flex">
+      <ul className="flex text-text">
+        <li>Home</li>
+        <li>Contact</li>
+      </ul>
+      <ShoppingCart />
+    </div>
   );
+}
+
+function ShoppingCart() {
+  return <span className="text-text">hello</span>;
 }
