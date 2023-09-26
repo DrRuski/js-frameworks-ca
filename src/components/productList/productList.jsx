@@ -1,7 +1,7 @@
 export default function ProductList({ productData }) {
   return (
     <section>
-      <ul className="grid grid-cols-5 gap-5">
+      <ul className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {productData?.map((product) => (
           <Product product={product} key={product.id} />
         ))}
@@ -26,9 +26,11 @@ function Product({ product }) {
         <div className="flex justify-between items-end">
           <p className="text-sm">
             {product.rating ? (
-              `User Rating | ${product.rating} ⭐`
+              <span className="text-sm">
+                User Rating | ${product.rating} ⭐
+              </span>
             ) : (
-              <span className="font-light opacity-50">
+              <span className="text-sm font-light opacity-50">
                 <em>Product is not rated.</em>
               </span>
             )}
@@ -36,13 +38,15 @@ function Product({ product }) {
           <p className="flex flex-col text-right">
             {product.discountedPrice !== product.price ? (
               <>
-                <span className="line-through opacity-50">{product.price}</span>
-                <span className="text-xl font-medium text-primary">
+                <span className="text-sm md:text-base line-through opacity-50">
+                  {product.price}
+                </span>
+                <span className="text-sm md:text-base font-medium text-primary">
                   {product.discountedPrice} $
                 </span>
               </>
             ) : (
-              <span className="text-xl font-medium text-primary">
+              <span className="text-sm md:text-base font-medium text-primary">
                 {product.price} $
               </span>
             )}
