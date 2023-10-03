@@ -1,6 +1,14 @@
+import { useRef } from "react";
+import { useKey } from "../misc/useKey";
+import Button from "../misc/button";
+
 export default function ProductList({ productData }) {
   return (
-    <section>
+    <section className="flex flex-col gap-5">
+      <div className="flex flex-wrap md:flex-nowrap justify-between items-center">
+        <CategorySelect />
+        <Search />
+      </div>
       <ul className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {productData?.map((product) => (
           <Product product={product} key={product.id} />
@@ -12,7 +20,7 @@ export default function ProductList({ productData }) {
 
 function Product({ product }) {
   return (
-    <li className="flex flex-col shadow-sm shadow-secondary rounded bg-secondary text-text border border-secondary hover:border hover:border-primary cursor-pointer">
+    <li className="flex flex-col shadow shadow-secondary rounded bg-secondary text-text border border-secondary hover:border hover:border-primary cursor-pointer">
       <img
         className="aspect-square object-cover rounded-t"
         src={product.imageUrl}
@@ -31,7 +39,7 @@ function Product({ product }) {
               </span>
             ) : (
               <span className="text-sm font-light opacity-50">
-                <em>Product is not rated.</em>
+                <em>Product is not yet rated.</em>
               </span>
             )}
           </p>
@@ -56,3 +64,52 @@ function Product({ product }) {
     </li>
   );
 }
+
+function Search({ query, setQuery }) {
+  const inputEl = useRef(null);
+
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) {
+      return;
+    }
+    inputEl.current.focus();
+    setQuery("");
+  });
+
+  return (
+    <input
+      className="block w-5/6 md:w-2/4 h-10 rounded text-center text-text bg-secondary shadow shadow-secondary border border-secondary hover:border-primary outline-none focus:border-primary cursor-pointer"
+      type="text"
+      placeholder="Search items..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
+    />
+  );
+}
+
+function CategorySelect() {
+  const buttonStyle = `
+      rounded bg-secondary shadow shadow-secondary border border-secondary hover:border-primary px-3 py-1.5`;
+
+  return (
+    <ul className="flex flex-wrap md:flex-nowrap gap-2 md:gap-5 text-text">
+      <li>
+        <Button buttonStyle={buttonStyle}>Cloths</Button>
+      </li>
+      <li>
+        <Button buttonStyle={buttonStyle}>Electronics</Button>
+      </li>
+      <li>
+        <Button buttonStyle={buttonStyle}>Nutrients</Button>
+      </li>
+      <li>
+        <Button buttonStyle={buttonStyle}>Cosmetics</Button>
+      </li>
+    </ul>
+  );
+}
+
+/*
+
+*/
