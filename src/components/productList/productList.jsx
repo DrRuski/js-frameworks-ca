@@ -4,12 +4,12 @@ import Button from "../misc/button";
 
 export default function ProductList({ productData }) {
   return (
-    <section className="flex flex-col gap-5">
-      <div className="flex flex-wrap md:flex-nowrap justify-between items-center">
+    <section id="productList" className="flex flex-col gap-5">
+      <div className="flex flex-wrap md:flex-nowrap gap-5 items-center h-10">
         <CategorySelect />
         <Search />
       </div>
-      <ul className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {productData?.map((product) => (
           <Product product={product} key={product.id} />
         ))}
@@ -78,7 +78,7 @@ function Search({ query, setQuery }) {
 
   return (
     <input
-      className="block w-5/6 md:w-2/4 h-10 rounded text-center text-text bg-secondary shadow shadow-secondary border border-secondary hover:border-primary outline-none focus:border-primary cursor-pointer"
+      className="block w-5/6 md:w-full h-full rounded ps-3 text-text placeholder:text-text bg-secondary shadow shadow-secondary border border-secondary hover:border-primary outline-none focus:border-primary cursor-pointer py"
       type="text"
       placeholder="Search items..."
       value={query}
@@ -90,10 +90,13 @@ function Search({ query, setQuery }) {
 
 function CategorySelect() {
   const buttonStyle = `
-      rounded bg-secondary shadow shadow-secondary border border-secondary hover:border-primary px-3 py-1.5`;
+      rounded bg-secondary shadow shadow-secondary border border-secondary hover:border-primary px-3 h-full`;
 
   return (
-    <ul className="flex flex-wrap md:flex-nowrap gap-2 md:gap-5 text-text">
+    <ul className="flex flex-wrap md:flex-nowrap gap-2 md:gap-5 text-text h-full">
+      <li>
+        <Button buttonStyle={buttonStyle}>All</Button>
+      </li>
       <li>
         <Button buttonStyle={buttonStyle}>Cloths</Button>
       </li>
