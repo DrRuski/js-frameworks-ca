@@ -61,9 +61,9 @@ function WebsiteValues() {
   return (
     <div>
       <ul className="flex flex-wrap gap-10 lg:flex-nowrap text-text text-center">
-        <li className="flex flex-col gap-5 items-center lg:flex-1">
-          <img className="w-3/6" src={shop} alt={shop} />
-          <div className="flex flex-col gap-3">
+        <li className="flex flex-col gap-2 items-center lg:flex-1">
+          <img className="w-2/6" src={shop} alt={shop} />
+          <div className="flex flex-col gap-2">
             <h3 className="text-2xl font-semibold">Shop with Confidence</h3>
             <p>
               At Elias` Glorious Goods, we prioritize your satisfaction. Our
@@ -73,9 +73,9 @@ function WebsiteValues() {
             </p>
           </div>
         </li>
-        <li className="flex flex-col gap-5 items-center lg:flex-1">
-          <img className="w-3/6" src={truck} alt={truck} />
-          <div className="flex flex-col gap-3">
+        <li className="flex flex-col gap-2 items-center lg:flex-1">
+          <img className="w-2/6" src={truck} alt={truck} />
+          <div className="flex flex-col gap-2">
             <h3 className="text-2xl font-semibold">
               Fast and Reliable Delivery{" "}
             </h3>
@@ -87,20 +87,18 @@ function WebsiteValues() {
           </div>
         </li>
 
-        <li className="flex flex-col gap-5 items-center lg:flex-1">
-          <img className="w-3/6" src={deals} alt={deals} />
-          <div className="flex flex-col gap-3">
+        <li className="flex flex-col gap-2 items-center lg:flex-1">
+          <img className="w-2/6" src={deals} alt={deals} />
+          <div className="flex flex-col gap-2">
             <h3 className="text-2xl font-semibold">
               Exclusive Deals and Offers
             </h3>
             <p>
               Stay tuned for our special promotions, discounts, and exclusive
-              offers. We believe in giving you the best value for your money,
-              making your shopping experience even more rewarding. No matter
-              what you`re looking for, Elias` Glorious Goods is your trusted
-              partner in finding the perfect products to suit your lifestyle and
-              needs. Join our diverse community of happy customers and start
-              shopping today.
+              offers. No matter what you`re looking for, Elias` Glorious Goods
+              is your trusted partner in finding the perfect products to suit
+              your lifestyle and needs. Join our diverse community of happy
+              customers and start shopping today.
             </p>
           </div>
         </li>

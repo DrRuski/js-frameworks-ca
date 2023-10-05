@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="container mx-auto my-5 md:my-10">
+    <header className="bg-background py-2.5 my-2.5 md:py-5 md:my-5 sticky top-0 z-50">
       <Nav />
     </header>
   );
