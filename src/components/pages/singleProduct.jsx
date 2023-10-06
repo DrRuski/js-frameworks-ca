@@ -30,8 +30,9 @@ export default function SingleProduct() {
   let percentage =
     ((product.price - product.discountedPrice) / product.discountedPrice) * 100;
 
+  //   console.log(product);
   return (
-    <section className="flex flex-col lg:flex-row text-text items-center justify-center gap-5">
+    <section className="flex flex-col lg:flex-row text-text justify-center gap-5 md:gap-10">
       <div className="relative">
         {percentage !== 0 && (
           <div className="h-20 w-20 absolute flex items-center justify-center bg-accent rounded-full shadow-md rotate-12 top-2 right-2">
@@ -40,20 +41,20 @@ export default function SingleProduct() {
             </p>
           </div>
         )}
-        <div className="">
-          <img
-            className="object-cover aspect-square rounded h-auto md:max-w-md"
-            src={product.imageUrl}
-            alt={product.title}
-          />
-        </div>
+
+        <img
+          className="object-cover aspect-square rounded h-auto md:max-w-md"
+          src={product.imageUrl}
+          alt={product.title}
+        />
       </div>
-      <div className="flex flex-col gap-5">
-        <div>
-          <h3 className="text-2xl font-bold">{product.title}</h3>
-          <p className="text-base">{product.description}</p>
-        </div>
-        <div className="flex justify-between items-end">
+
+      <div className="flex flex-col justify-between gap-5 md:max-w-md">
+        <div className="flex flex-col gap-10">
+          <div>
+            <h3 className="text-3xl font-bold text-primary">{product.title}</h3>
+            <p className="text-base">{product.description}</p>
+          </div>
           <div>
             <p className="text-sm">
               {product.rating ? (
@@ -67,56 +68,92 @@ export default function SingleProduct() {
               )}
             </p>
           </div>
-          <p className="flex flex-col text-right">
-            {product.discountedPrice !== product.price ? (
-              <>
-                <span className="text-sm md:text-base line-through opacity-50">
-                  {product.price}
-                </span>
-                <span className="text-sm md:text-base font-medium text-primary">
-                  {product.discountedPrice} $
-                </span>
-              </>
-            ) : (
-              <span className="text-sm md:text-base font-medium text-primary">
-                {product.price} $
-              </span>
-            )}
-          </p>
         </div>
-
-        <div className="flex flex-col gap-2 md:gap-5 items-center">
-          <div className="flex w-full xl:w-3/6 items-center justify-between bg-secondary rounded shadow-md">
-            <button
-              onClick={() => setCount((c) => c - 1)}
-              className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
-            >
-              -
-            </button>
-            <input
-              className="text-primary text-center bg-secondary font-black"
-              type="text"
-              placeholder={count}
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value))}
-            />
-
-            <button
-              onClick={() => setCount((c) => c + 1)}
-              className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
-            >
-              +
-            </button>
+        <div className="flex flex-col gap-5">
+          <div>
+            <p className="flex flex-col-reverse text-left">
+              {product.discountedPrice !== product.price ? (
+                <>
+                  <span className="text-sm md:text-xl line-through opacity-50">
+                    {product.price}
+                  </span>
+                  <span className="text-sm md:text-3xl font-medium md:font-bold text-primary">
+                    ${product.discountedPrice}
+                  </span>
+                </>
+              ) : (
+                <span className="text-sm md:text-base font-medium text-primary">
+                  ${product.price}
+                </span>
+              )}
+            </p>
           </div>
 
-          <Link
-            type="button"
-            className="w-full xl:w-3/6 rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
-          >
-            <FontAwesomeIcon icon={faCartShopping} /> <span>Add to Cart</span>
-          </Link>
+          <div className="flex flex-col gap-2 items-center">
+            <div className="flex justify-between bg-secondary rounded shadow-md w-full">
+              <button
+                onClick={() => setCount((c) => c - 1)}
+                className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
+              >
+                -
+              </button>
+              <input
+                className="text-primary text-center bg-secondary font-black"
+                type="text"
+                placeholder={count}
+                value={count}
+                onChange={(e) => setCount(Number(e.target.value))}
+              />
+
+              <button
+                onClick={() => setCount((c) => c + 1)}
+                className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
+              >
+                +
+              </button>
+            </div>
+
+            <Link
+              type="button"
+              className="w-full rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
+            >
+              <FontAwesomeIcon icon={faCartShopping} /> <span>Add to Cart</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+/* <div className="flex flex-col gap-2 md:gap-5 items-center">
+            <div className="flex w-full xl:w-3/6 items-center justify-between bg-secondary rounded shadow-md">
+              <button
+                onClick={() => setCount((c) => c - 1)}
+                className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
+              >
+                -
+              </button>
+              <input
+                className="text-primary text-center bg-secondary font-black"
+                type="text"
+                placeholder={count}
+                value={count}
+                onChange={(e) => setCount(Number(e.target.value))}
+              />
+
+              <button
+                onClick={() => setCount((c) => c + 1)}
+                className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
+              >
+                +
+              </button>
+            </div>
+
+            <Link
+              type="button"
+              className="w-full xl:w-3/6 rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
+            >
+              <FontAwesomeIcon icon={faCartShopping} /> <span>Add to Cart</span>
+            </Link>
+          </div> */
