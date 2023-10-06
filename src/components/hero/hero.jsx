@@ -4,7 +4,6 @@ import deals from "./../../assets/images/deals.png";
 import { HashLink } from "react-router-hash-link";
 
 export default function Hero({ productData }) {
-  //   const buttonStyle = `rounded bg-primary shadow shadow-secondary hover:bg-secondary w-3/6 py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold`;
   return (
     <section>
       <div className="flex flex-col gap-16">

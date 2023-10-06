@@ -12,7 +12,7 @@ export default function Header() {
 
 function Nav() {
   return (
-    <nav className="flex flex-col items-center gap-4 md:flex-row md:justify-between h-full">
+    <nav className="container m-auto flex flex-col items-center gap-4 md:flex-row md:justify-between h-full">
       <Logo />
       <NavLinks />
     </nav>

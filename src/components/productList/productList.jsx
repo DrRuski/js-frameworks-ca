@@ -1,14 +1,17 @@
-import { useRef } from "react";
-import { useKey } from "../misc/useKey";
+import Search from "../misc/search";
 import Button from "../misc/button";
 import { Link } from "react-router-dom";
 
-export default function ProductList({ productData }) {
+export default function ProductList({ productData, query, setQuery }) {
   return (
     <section id="productList" className="flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-5">
         <CategorySelect />
-        <Search />
+        <Search
+          query={query}
+          setQuery={setQuery}
+          placeholderText="Search Items..."
+        />
       </div>
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {productData?.map((product) => (
@@ -81,29 +84,6 @@ function Product({ product }) {
         </div>
       </Link>
     </li>
-  );
-}
-
-function Search({ query, setQuery }) {
-  const inputEl = useRef(null);
-
-  useKey("Enter", function () {
-    if (document.activeElement === inputEl.current) {
-      return;
-    }
-    inputEl.current.focus();
-    setQuery("");
-  });
-
-  return (
-    <input
-      className="block w-full h-10 rounded ps-3 text-text placeholder:text-text bg-secondary shadow shadow-secondary border border-secondary hover:border-primary outline-none focus:border-primary cursor-pointer py"
-      type="text"
-      placeholder="Search items..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-      ref={inputEl}
-    />
   );
 }
 

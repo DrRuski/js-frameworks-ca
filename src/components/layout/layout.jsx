@@ -4,9 +4,11 @@ import { Outlet } from "react-router-dom";
 
 export default function Layout() {
   return (
-    <div className="container m-auto">
+    <div>
       <Header />
-      <Outlet />
+      <div className="container m-auto">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

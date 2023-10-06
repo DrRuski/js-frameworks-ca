@@ -9,8 +9,10 @@ import ErrorMessage from "./components/misc/error";
 import ContactPage from "./components/pages/contact";
 import CartPage from "./components/pages/cart";
 import SingleProduct from "./components/pages/singleProduct";
+import { useState } from "react";
 
 export default function App() {
+  const [query, setQuery] = useState("");
   const { isLoading, productData, error } = useData();
   return (
     <Routes>
@@ -23,14 +25,21 @@ export default function App() {
               <Hero productData={productData} />
               {isLoading && <Loader />}
               {!isLoading && !error ? (
-                <ProductList productData={productData} />
+                <ProductList
+                  productData={productData}
+                  query={query}
+                  setQuery={setQuery}
+                />
               ) : (
                 <ErrorMessage message={error} />
               )}
             </Home>
           }
         ></Route>
-        <Route path="contact" element={<ContactPage />}></Route>
+        <Route
+          path="contact"
+          element={<ContactPage query={query} setQuery={setQuery} />}
+        ></Route>
         <Route path="cart" element={<CartPage />}></Route>
         <Route path="product/:id" element={<SingleProduct />}></Route>
       </Route>
