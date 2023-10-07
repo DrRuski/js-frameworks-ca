@@ -30,7 +30,7 @@ export default function SingleProduct() {
   let percentage =
     ((product.price - product.discountedPrice) / product.discountedPrice) * 100;
 
-  console.log(product);
+  //   console.log(product);
   return (
     <section className="flex flex-col gap-10 md:gap-16 md:items-center">
       <div className="flex flex-col lg:flex-row text-text justify-center gap-5 md:gap-10">
@@ -149,8 +149,10 @@ function ReviewSection({ product }) {
               {review.username.slice(0, 1)}
             </span>
           </div>
-          <div className="">
-            <h3>{review.username}</h3>
+          <div>
+            <h3 className="text-primary md:font-medium md:text-lg">
+              {review.username}
+            </h3>
             <p>{review.description}</p>
             <p>⭐ {review.rating}</p>
           </div>
