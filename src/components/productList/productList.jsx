@@ -1,20 +1,26 @@
 import Search from "../misc/search";
 import Button from "../misc/button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default function ProductList({ productData, query, setQuery }) {
+export default function ProductList({ productData }) {
+  const [searchText, setSearchText] = useState("");
+  const prodSearch = productData.filter((item) =>
+    item.title.toLowerCase().includes(searchText.toLowerCase())
+  );
   return (
     <section id="productList" className="flex flex-col gap-5">
       <div className="flex flex-col md:flex-row gap-5">
         <CategorySelect />
+
         <Search
-          query={query}
-          setQuery={setQuery}
+          query={searchText}
+          setQuery={setSearchText}
           placeholderText="Search Items..."
         />
       </div>
       <ul className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {productData?.map((product) => (
+        {prodSearch?.map((product) => (
           <Product product={product} key={product.id} />
         ))}
       </ul>

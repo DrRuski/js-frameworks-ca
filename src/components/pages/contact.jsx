@@ -1,6 +1,5 @@
 import Accordion from "../faqs/faqs";
 import ContactForm from "../form/form";
-import Search from "../misc/search";
 
 export default function ContactPage({ query, setQuery }) {
   return (
@@ -11,12 +10,7 @@ export default function ContactPage({ query, setQuery }) {
       </div>
       <div className="flex flex-col gap-5">
         <h2 className="text-center text-text text-xl md:text-4xl">FAQs</h2>
-        <Search
-          query={query}
-          setQuery={setQuery}
-          placeholderText="Search FAQs..."
-        />
-        <Accordion />
+        <Accordion query={query} setQuery={setQuery} />
       </div>
     </section>
   );

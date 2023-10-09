@@ -1,22 +1,35 @@
 import { useState } from "react";
 import { faqs } from "../../data/faqs";
+import Search from "../misc/search";
 
 export default function Accordion() {
+  const [searchText, setSearchText] = useState("");
   const [curOpen, setIsOpen] = useState(null);
-
+  const faqsList = faqs.filter((faq) =>
+    faq.title.toLowerCase().includes(searchText)
+  );
   return (
-    <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-text">
-      {faqs.map((faq, i) => (
-        <FaqItem
-          curOpen={curOpen}
-          onOpen={setIsOpen}
-          num={i}
-          title={faq.title}
-          key={i}
-        >
-          {faq.text}
-        </FaqItem>
-      ))}
+    <div className="flex flex-col gap-5">
+      <div>
+        <Search
+          query={searchText}
+          setQuery={setSearchText}
+          placeholderText="Search FAQs..."
+        />
+      </div>
+      <div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-text">
+        {faqsList.map((faq, i) => (
+          <FaqItem
+            curOpen={curOpen}
+            onOpen={setIsOpen}
+            num={i}
+            title={faq.title}
+            key={i}
+          >
+            {faq.text}
+          </FaqItem>
+        ))}
+      </div>
     </div>
   );
 }

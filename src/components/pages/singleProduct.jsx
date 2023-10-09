@@ -85,7 +85,7 @@ export default function SingleProduct() {
                     </span>
                   </>
                 ) : (
-                  <span className="text-sm md:text-base font-medium text-primary">
+                  <span className="text-sm md:text-3xl font-medium md:font-bold text-primary">
                     ${product.price}
                   </span>
                 )}
