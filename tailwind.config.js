@@ -12,6 +12,8 @@ export default {
       primary: "#d58234",
       secondary: "#0d273f",
       accent: "#d88a41",
+      success: "#68B984",
+      danger: "#C70039",
     },
   },
   plugins: [],

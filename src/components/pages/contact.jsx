@@ -8,7 +8,7 @@ export default function ContactPage({ query, setQuery }) {
       <div className="flex flex-col">
         <ContactForm />
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-10">
         <h2 className="text-center text-text text-xl md:text-4xl">FAQs</h2>
         <Accordion query={query} setQuery={setQuery} />
       </div>
