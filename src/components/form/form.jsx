@@ -63,7 +63,8 @@ export default function ContactForm() {
             required: "This field is required.",
             pattern: {
               value: /^[\w\-.]+@(stud\.)?noroff\.no$/,
-              message: "Email is invalid",
+              message:
+                "Your email is invalid. - Only stud.noroff.no or noroff.no emails are valid.",
             },
           })}
         />
@@ -88,19 +89,14 @@ export default function ContactForm() {
           {errors.queryContent?.message}
         </p>
       </div>
-      {submitSuc ? (
-        <input
-          type="submit"
-          value="Form Submitted 👍"
-          className="rounded bg-success shadow shadow-secondary py-2 border border-success text-secondary text-lg font-semibold text-center"
-        />
-      ) : (
-        <input
-          type="submit"
-          value="Submit Form"
-          className="rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
-        />
-      )}
+
+      <input
+        type="submit"
+        value={submitSuc ? "Form Was Submitted 👍" : "Submit Form"}
+        className={`rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center ${
+          submitSuc ? "bg-success border-success" : ""
+        }`}
+      />
     </form>
   );
 }

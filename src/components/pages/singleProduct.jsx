@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../misc/loader";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const url = `https://api.noroff.dev/api/v1/online-shop`;
 
-export default function SingleProduct() {
+export default function SingleProduct({ setCartData }) {
   const params = useParams();
   const [product, setProduct] = useState(null);
-  const [count, setCount] = useState(1);
 
   useEffect(() => {
     async function fetchSingleProduct() {
@@ -30,7 +28,10 @@ export default function SingleProduct() {
   let percentage =
     ((product.price - product.discountedPrice) / product.discountedPrice) * 100;
 
-  //   console.log(product);
+  function handleAddToCart() {
+    setCartData((prevCart) => [...prevCart, product]);
+  }
+
   return (
     <section className="flex flex-col gap-10 md:gap-16 md:items-center">
       <div className="flex flex-col lg:flex-row text-text justify-center gap-5 md:gap-10">
@@ -92,38 +93,12 @@ export default function SingleProduct() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-2 items-center">
-              <div className="flex justify-between bg-secondary rounded shadow-md w-full">
-                <button
-                  onClick={() => setCount((c) => c - 1)}
-                  className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
-                >
-                  -
-                </button>
-                <input
-                  className="text-primary text-center bg-secondary font-black"
-                  type="text"
-                  placeholder={count}
-                  value={count}
-                  onChange={(e) => setCount(Number(e.target.value))}
-                />
-
-                <button
-                  onClick={() => setCount((c) => c + 1)}
-                  className="py-3 px-4 text-primary font-black text-base border rounded border-secondary hover:border-primary"
-                >
-                  +
-                </button>
-              </div>
-
-              <Link
-                type="button"
-                className="w-full rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
-              >
-                <FontAwesomeIcon icon={faCartShopping} />{" "}
-                <span>Add to Cart</span>
-              </Link>
-            </div>
+            <button
+              onClick={handleAddToCart}
+              className="w-full rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
+            >
+              <FontAwesomeIcon icon={faCartShopping} /> <span>Add to Cart</span>
+            </button>
           </div>
         </div>
       </div>

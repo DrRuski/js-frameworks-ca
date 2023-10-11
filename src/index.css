@@ -65,7 +65,18 @@ body {
 }
 
 
+/* NavLink */
+.active {
+    color: #d88a41;
+}
 
+.inActive {
+    color: #d5e6f6;
+}
+
+.inActive:hover {
+    color: #d88a41;
+}
 
 
 

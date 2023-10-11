@@ -9,10 +9,11 @@ import ErrorMessage from "./components/misc/error";
 import ContactPage from "./components/pages/contact";
 import CartPage from "./components/pages/cart";
 import SingleProduct from "./components/pages/singleProduct";
+import { useState } from "react";
 
 export default function App() {
   const { isLoading, productData, error } = useData();
-
+  const [cartData, setCartData] = useState([]);
   return (
     <Routes>
       <Route element={<Layout />}>
@@ -32,8 +33,11 @@ export default function App() {
           }
         ></Route>
         <Route path="contact" element={<ContactPage />}></Route>
-        <Route path="cart" element={<CartPage />}></Route>
-        <Route path="product/:id" element={<SingleProduct />}></Route>
+        <Route path="cart" element={<CartPage cartData={cartData} />}></Route>
+        <Route
+          path="product/:id"
+          element={<SingleProduct setCartData={setCartData} />}
+        ></Route>
       </Route>
     </Routes>
   );

@@ -1,56 +1,54 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
     <header className="bg-background py-2.5 my-2.5 md:py-5 md:my-5 sticky top-0 z-50">
-      <Nav />
+      <Navbar />
     </header>
   );
 }
 
-function Nav() {
+function Navbar() {
   return (
     <nav className="container m-auto flex flex-col items-center gap-4 md:flex-row md:justify-between h-full">
-      <Logo />
+      <a href="/" className="text-text">
+        Elias` Glorious Goods
+      </a>
       <NavLinks />
     </nav>
   );
 }
 
-function Logo() {
-  return (
-    <div>
-      <h2 className="text-text">Elias` Glorious Goods</h2>
-    </div>
-  );
-}
-
 function NavLinks() {
   return (
-    <div>
-      <ul className="flex gap-5 text-text">
-        <li>
-          <Link to="/" className="hover:text-primary cursor-pointer">
-            HOME
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" className="hover:text-primary cursor-pointer">
-            CONTACT
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/cart"
-            className="text-text hover:text-primary cursor-pointer"
-          >
-            <span className="me-2">CART</span>
-            <FontAwesomeIcon icon={faCartShopping} />
-          </Link>
-        </li>
-      </ul>
-    </div>
+    <ul className="flex gap-5 text-text">
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "inActive")}
+        >
+          HOME
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "active" : "inActive")}
+        >
+          CONTACT
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/cart"
+          className={({ isActive }) => (isActive ? "active" : "inActive")}
+        >
+          <span className="me-2">CART</span>
+          <FontAwesomeIcon icon={faCartShopping} />
+        </NavLink>
+      </li>
+    </ul>
   );
 }
