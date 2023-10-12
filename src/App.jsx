@@ -9,36 +9,38 @@ import ErrorMessage from "./components/misc/error";
 import ContactPage from "./components/pages/contact";
 import CartPage from "./components/pages/cart";
 import SingleProduct from "./components/pages/singleProduct";
-import { useState } from "react";
+import { createContext } from "react";
+import { useLocalStorageState } from "./components/misc/localStorage";
+export const CartContext = createContext([]);
 
 export default function App() {
   const { isLoading, productData, error } = useData();
-  const [cartData, setCartData] = useState([]);
+  const [cartData, setCartData] = useLocalStorageState([], "products");
+  const cartValue = { cartData, setCartData };
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route
-          index
-          path="/"
-          element={
-            <Home>
-              <Hero productData={productData} />
-              {isLoading && <Loader />}
-              {!isLoading && !error ? (
-                <ProductList productData={productData} />
-              ) : (
-                <ErrorMessage message={error} />
-              )}
-            </Home>
-          }
-        ></Route>
-        <Route path="contact" element={<ContactPage />}></Route>
-        <Route path="cart" element={<CartPage cartData={cartData} />}></Route>
-        <Route
-          path="product/:id"
-          element={<SingleProduct setCartData={setCartData} />}
-        ></Route>
-      </Route>
-    </Routes>
+    <CartContext.Provider value={cartValue}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route
+            index
+            path="/"
+            element={
+              <Home>
+                <Hero productData={productData} />
+                {isLoading && <Loader />}
+                {!isLoading && !error ? (
+                  <ProductList productData={productData} />
+                ) : (
+                  <ErrorMessage message={error} />
+                )}
+              </Home>
+            }
+          ></Route>
+          <Route path="contact" element={<ContactPage />}></Route>
+          <Route path="cart" element={<CartPage />}></Route>
+          <Route path="product/:id" element={<SingleProduct />}></Route>
+        </Route>
+      </Routes>
+    </CartContext.Provider>
   );
 }

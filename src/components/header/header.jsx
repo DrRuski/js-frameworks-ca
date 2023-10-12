@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../App";
 
 export default function Header() {
   return (
@@ -22,6 +24,8 @@ function Navbar() {
 }
 
 function NavLinks() {
+  const { cartData } = useContext(CartContext);
+  console.log(cartData);
   return (
     <ul className="flex gap-5 text-text">
       <li>

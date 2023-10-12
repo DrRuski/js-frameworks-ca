@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../misc/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { CartContext } from "../../App";
 
 const url = `https://api.noroff.dev/api/v1/online-shop`;
 
-export default function SingleProduct({ setCartData }) {
+export default function SingleProduct() {
   const params = useParams();
   const [product, setProduct] = useState(null);
+  const { cartData, setCartData } = useContext(CartContext);
+  console.log(cartData);
 
   useEffect(() => {
     async function fetchSingleProduct() {
@@ -28,8 +31,12 @@ export default function SingleProduct({ setCartData }) {
   let percentage =
     ((product.price - product.discountedPrice) / product.discountedPrice) * 100;
 
-  function handleAddToCart() {
-    setCartData((prevCart) => [...prevCart, product]);
+  function handleAddToCart(id) {
+    const productExists = cartData.some((product) => product.id === id);
+    if (!productExists) {
+      setCartData((cartData) => [...cartData, product]);
+    }
+    return;
   }
 
   return (
@@ -94,7 +101,7 @@ export default function SingleProduct({ setCartData }) {
             </div>
 
             <button
-              onClick={handleAddToCart}
+              onClick={() => handleAddToCart(product.id)}
               className="w-full rounded bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
             >
               <FontAwesomeIcon icon={faCartShopping} /> <span>Add to Cart</span>
