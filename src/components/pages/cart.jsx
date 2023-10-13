@@ -1,12 +1,36 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../App";
 
 export default function CartPage() {
   const { cartData, setCartData } = useContext(CartContext);
-  const [amount, setAmount] = useState(1);
+  console.log(cartData);
 
+  //
+  const handleIncrement = (id) => {
+    const prodIndex = cartData.findIndex((item) => item.id === id);
+    if (prodIndex !== -1) {
+      [...cartData][prodIndex].quantity += 1;
+      setCartData([...cartData]);
+    }
+    console.log([...cartData]);
+  };
+  //
+  const handleDecrement = (id) => {
+    const productIndex = [...cartData].findIndex((item) => item.id === id);
+
+    if (productIndex !== -1) {
+      if ([...cartData][productIndex].quantity > 1) {
+        [...cartData][productIndex].quantity -= 1;
+        setCartData([...cartData]);
+      } else {
+        [...cartData].splice(productIndex, 1);
+        setCartData([...cartData]);
+      }
+    }
+  };
+  //
   function handleDeleteProduct(id) {
     setCartData((cartData) => cartData.filter((product) => product.id !== id));
   }
@@ -18,7 +42,7 @@ export default function CartPage() {
         <>
           <ul className="flex flex-col md:gap-5">
             <div className="text-text flex justify-end gap-16">
-              <p className="col-start-2">Amount</p>
+              <p className="col-start-2">Quantity</p>
               <p className="col-start-3">Price</p>
               <p className="col-start-4">Total</p>
               <p className="col-start-5">Delete</p>
@@ -27,9 +51,9 @@ export default function CartPage() {
               <CartItem
                 product={product}
                 key={product.id}
+                handleIncrement={handleIncrement}
+                handleDecrement={handleDecrement}
                 onDeleteProduct={handleDeleteProduct}
-                amount={amount}
-                setAmount={setAmount}
               />
             ))}
           </ul>
@@ -40,7 +64,9 @@ export default function CartPage() {
               {cartData
                 .reduce(
                   (total, product) =>
-                    total + Number(product.discountedPrice || product.price),
+                    total +
+                    Number(product.discountedPrice || product.price) *
+                      product.quantity,
                   0
                 )
                 .toFixed(2)}{" "}
@@ -55,7 +81,12 @@ export default function CartPage() {
   );
 }
 
-function CartItem({ product, onDeleteProduct, amount, setAmount }) {
+function CartItem({
+  product,
+  onDeleteProduct,
+  handleIncrement,
+  handleDecrement,
+}) {
   return (
     <li className="flex justify-between items-center">
       <div className="flex gap-5">
@@ -72,40 +103,36 @@ function CartItem({ product, onDeleteProduct, amount, setAmount }) {
       <div className="flex items-center gap-16">
         <div className="flex bg-secondary rounded shadow-md">
           <button
-            onClick={() => setAmount((c) => c - 1)}
+            onClick={() => handleDecrement(product.id)}
             className="py-1 px-2 text-primary font-black text-base border rounded border-secondary hover:border-primary"
           >
             -
           </button>
-          <input
-            className="text-primary text-center bg-secondary font-black"
-            type="text"
-            placeholder={amount}
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-          />
-
+          <div className="flex justify-center items-center w-10 text-primary bg-secondary font-black">
+            {product.quantity}
+          </div>
           <button
-            onClick={() => setAmount((c) => c + 1)}
+            onClick={() => handleIncrement(product.id)}
             className="py-1 px-2 text-primary font-black text-base border rounded border-secondary hover:border-primary"
           >
             +
           </button>
         </div>
+
         {product.discountedPrice !== product.price ? (
           <>
             <p className="text-primary">
-              {Number(product.discountedPrice).toFixed(2)}
+              ${Number(product.discountedPrice).toFixed(2)}
             </p>
             <p className="text-primary">
-              {(amount * Number(product.discountedPrice)).toFixed(2)}
+              ${(product.quantity * Number(product.discountedPrice)).toFixed(2)}
             </p>
           </>
         ) : (
           <>
-            <p className="text-primary">{Number(product.price).toFixed(2)}</p>
+            <p className="text-primary">${Number(product.price).toFixed(2)}</p>
             <p className="text-primary">
-              {(amount * Number(product.price)).toFixed(2)}
+              ${(product.quantity * Number(product.price)).toFixed(2)}
             </p>
           </>
         )}

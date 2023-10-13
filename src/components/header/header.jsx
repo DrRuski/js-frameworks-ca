@@ -25,7 +25,6 @@ function Navbar() {
 
 function NavLinks() {
   const { cartData } = useContext(CartContext);
-  console.log(cartData);
   return (
     <ul className="flex gap-5 text-text">
       <li>
@@ -51,6 +50,11 @@ function NavLinks() {
         >
           <span className="me-2">CART</span>
           <FontAwesomeIcon icon={faCartShopping} />
+          {cartData.length >= 1 && (
+            <span className="rounded-full bg-accent text-background ms-1 font-semibold px-1">
+              {cartData.length}
+            </span>
+          )}
         </NavLink>
       </li>
     </ul>

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Loader from "../misc/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -9,9 +9,9 @@ const url = `https://api.noroff.dev/api/v1/online-shop`;
 
 export default function SingleProduct() {
   const params = useParams();
+  const location = useLocation();
   const [product, setProduct] = useState(null);
   const { cartData, setCartData } = useContext(CartContext);
-  console.log(cartData);
 
   useEffect(() => {
     async function fetchSingleProduct() {
@@ -26,6 +26,11 @@ export default function SingleProduct() {
     }
     fetchSingleProduct();
   }, [params.id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   if (product === null) return <Loader />;
 
   let percentage =
@@ -34,7 +39,7 @@ export default function SingleProduct() {
   function handleAddToCart(id) {
     const productExists = cartData.some((product) => product.id === id);
     if (!productExists) {
-      setCartData((cartData) => [...cartData, product]);
+      setCartData((cartData) => [...cartData, { ...product, quantity: 1 }]);
     }
     return;
   }
