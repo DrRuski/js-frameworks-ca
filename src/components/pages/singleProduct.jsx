@@ -33,6 +33,8 @@ export default function SingleProduct() {
 
   if (product === null) return <Loader />;
 
+  document.title = `${product.title}`;
+
   let percentage =
     ((product.price - product.discountedPrice) / product.discountedPrice) * 100;
 

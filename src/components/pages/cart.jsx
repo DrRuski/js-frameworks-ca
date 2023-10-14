@@ -1,20 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../App";
 
 export default function CartPage() {
   const { cartData, setCartData } = useContext(CartContext);
-  console.log(cartData);
+  const [isActive, setIsActive] = useState(false);
+  document.title = "Shopping Cart";
 
-  //
   const handleIncrement = (id) => {
     const prodIndex = cartData.findIndex((item) => item.id === id);
     if (prodIndex !== -1) {
       [...cartData][prodIndex].quantity += 1;
       setCartData([...cartData]);
     }
-    console.log([...cartData]);
   };
   //
   const handleDecrement = (id) => {
@@ -31,6 +31,14 @@ export default function CartPage() {
     }
   };
   //
+  function handlePurchase() {
+    setIsActive(true);
+    setTimeout(() => {
+      setIsActive(false);
+      setCartData([], "products");
+    }, 4000);
+  }
+  //
   function handleDeleteProduct(id) {
     setCartData((cartData) => cartData.filter((product) => product.id !== id));
   }
@@ -40,8 +48,8 @@ export default function CartPage() {
 
       {cartData.length >= 1 ? (
         <>
-          <ul className="flex flex-col md:gap-5">
-            <div className="text-text flex justify-end gap-16">
+          <ul className="flex flex-col gap-5">
+            <div className="text-text flex justify-between md:justify-end md:gap-16">
               <p className="col-start-2">Quantity</p>
               <p className="col-start-3">Price</p>
               <p className="col-start-4">Total</p>
@@ -58,7 +66,20 @@ export default function CartPage() {
             ))}
           </ul>
           <div className="flex flex-col items-end gap-5 text-text">
-            <p>Total</p>
+            <div className="w-full border-b border-b-secondary"></div>
+            {isActive && (
+              <div className="flex flex-col items-center gap-5 shadow text-text md:w-1/4 m-auto bg-secondary border border-secondary rounded p-5">
+                <h4 className="text-xl text-center">
+                  Your purchase has been processed.
+                </h4>
+                <FontAwesomeIcon
+                  className="text-primary text-3xl"
+                  icon={faCircleCheck}
+                />
+                <p>Cleaning your cart now...</p>
+              </div>
+            )}
+            <p className="font-semibold text-xl">Total</p>
             <p className="text-primary text-xl font-bold">
               $
               {cartData
@@ -72,10 +93,18 @@ export default function CartPage() {
                 .toFixed(2)}{" "}
               ,-
             </p>
+            <button
+              className="rounded w-32 bg-primary shadow shadow-secondary hover:bg-secondary py-2 border border-primary hover:border-primary hover:text-primary text-secondary text-lg font-semibold text-center"
+              onClick={handlePurchase}
+            >
+              Purchase
+            </button>
           </div>
         </>
       ) : (
-        <h3 className="text-text m-auto md:text-xl">Your Cart is Empty.</h3>
+        <>
+          <h3 className="text-text m-auto md:text-xl">Your Cart is Empty.</h3>
+        </>
       )}
     </div>
   );
@@ -88,19 +117,19 @@ function CartItem({
   handleDecrement,
 }) {
   return (
-    <li className="flex justify-between items-center">
-      <div className="flex gap-5">
+    <li className="flex flex-col md:flex-row justify-between md:items-center">
+      <div className="flex gap-3 md:gap-5">
         <img
-          className="object-cover aspect-square rounded w-16 md:w-24"
+          className="object-contain md:object-cover aspect-square rounded w-16 md:w-24"
           src={product.imageUrl}
           alt={product.title}
         />
-        <div className="text-text w-2/4">
+        <div className="text-text md:w-2/4">
           <h3>{product.title}</h3>
           <p>{product.description}</p>
         </div>
       </div>
-      <div className="flex items-center gap-16">
+      <div className="flex items-center justify-between md:gap-16">
         <div className="flex bg-secondary rounded shadow-md">
           <button
             onClick={() => handleDecrement(product.id)}
@@ -137,7 +166,7 @@ function CartItem({
           </>
         )}
         <button
-          className="text-text p-2 border shadow border-background h-full"
+          className="text-text p-2 border shadow border-background h-full hover:text-primary"
           onClick={() => onDeleteProduct(product.id)}
         >
           <FontAwesomeIcon icon={faTrashCan} />
@@ -146,20 +175,3 @@ function CartItem({
     </li>
   );
 }
-
-/* 
-{product.discountedPrice !== product.price ? (
-                <>
-                  <span className="text-sm md:text-base line-through opacity-50">
-                    {product.price}
-                  </span>
-                  <span className="text-sm md:text-base font-medium text-primary">
-                    {product.discountedPrice} $
-                  </span>
-                </>
-              ) : (
-                <span className="text-sm md:text-base font-medium text-primary">
-                  {product.price} $
-                </span>
-              )}
-*/
