@@ -1,6 +1,10 @@
 # Your project title
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+|                                                 Home                                                 |                                               Profile                                                |
+| :--------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
+| ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/04931e12-f77c-427d-9f35-834bb70e8fb2) | ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/7efa3f33-656e-4e41-8541-3141bd698fc2) |
+|                                             VM Dashboard                                             |                                           Individual Venue                                           |
+| ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/92f7b9d1-2cb9-462d-bc8e-45fe69403f7e) | ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/ae0d815d-2d53-49c8-88c7-bb1c72238e76) |
 
 A simple overview of the use/purpose of the project.
 
