@@ -75,7 +75,7 @@ https://jade-paprenjak-6721a7.netlify.app/
 1. Clone the repo through github app/website or use the CLI command:
 
 ```
-git clone https://github.com/DrRuski/CabinQuest.git
+git clone https://github.com/DrRuski/js-frameworks-ca.git
 ```
 
 2. Install dependencies:
