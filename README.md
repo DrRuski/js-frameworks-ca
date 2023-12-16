@@ -1,10 +1,10 @@
 # Your project title
 
-|                                                 Home                                                 |                                               Profile                                                |
+|                                                 Home                                                 |                                               Item                                                |
 | :--------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
-| ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/04931e12-f77c-427d-9f35-834bb70e8fb2) | ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/7efa3f33-656e-4e41-8541-3141bd698fc2) |
-|                                             VM Dashboard                                             |                                           Individual Venue                                           |
-| ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/92f7b9d1-2cb9-462d-bc8e-45fe69403f7e) | ![bilde](https://github.com/DrRuski/CabinQuest/assets/96174153/ae0d815d-2d53-49c8-88c7-bb1c72238e76) |
+| ![home](https://github.com/DrRuski/js-frameworks-ca/assets/96174153/1f9d2868-cce3-47c6-86a6-70596516e23e)  |  ![item](https://github.com/DrRuski/js-frameworks-ca/assets/96174153/4b4afd34-6b52-4d9b-b24c-cebbe98cc44f)  |
+|                                             Contact                                             |                                           Cart                                           |
+|  ![contact](https://github.com/DrRuski/js-frameworks-ca/assets/96174153/2ef772d2-1392-4cc1-8b7c-cc14bba8480e)  |  ![cart](https://github.com/DrRuski/js-frameworks-ca/assets/96174153/734a8d4a-dd86-4892-ad64-19d683a02d10)  |
 
 A simple overview of the use/purpose of the project.
 
